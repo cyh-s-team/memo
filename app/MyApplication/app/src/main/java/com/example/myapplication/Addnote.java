@@ -88,11 +88,8 @@ public class Addnote extends AppCompatActivity{
     String title;
     String time;
     String context;
-    public String datatype = "0";// 判断是否开启了闹钟提醒功能
-    public String datatime = "0";// 提醒时间
-    public String locktype = "0";// 判断是否打开密码锁
-    public String lock = "0";// 密码
-    private List<Map<String, String>> imgList = new ArrayList<Map<String, String>>();// 记录editText中的图片，用于单击时判断单击的是那一个图片
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -153,16 +150,7 @@ public class Addnote extends AppCompatActivity{
                         dop.update_db(title, context, time, datatype, datatime,
                                 locktype, lock, item_Id);
                     }
-                    dop.close_db();
-                    //云端数据库保存
-                    CloudSQLBean cdop =new CloudSQLBean();
-                    cdop.setTitle(title);
-                    cdop.setContext(context);
-                    cdop.setTime(time);
-                    cdop.setDatatype(datatype);
-                    cdop.setDatatime(datatime);
-                    cdop.setLocktype(locktype);
-                    cdop.setLock(lock);
+
                     cdop.save(new SaveListener<String>() {
                         @Override
                         public void done(String objectId,BmobException e) {
@@ -295,27 +283,7 @@ public class Addnote extends AppCompatActivity{
         }
     }
 
-    //提醒闹钟设置
-    private void setReminder() {
-        DateTimePickerDialog d;
-        if ("0".equals(datatime)) {//判断是否设置过提醒时间
-            d = new DateTimePickerDialog(this, System.currentTimeMillis());//设置自定义时间弹出显示系统时间
-        } else {
-            d = new DateTimePickerDialog(this, getdaytime(datatime));//设置自定义时间弹出显示设置过的时间
-        }
-        d.setOnDateTimeSetListener(new DateTimePickerDialog.OnDateTimeSetListener() {
-            public void OnDateTimeSet(AlertDialog dialog, long date) {
-                // 取得当前时间
-                SimpleDateFormat formatter = new SimpleDateFormat(
-                        "yyyy-MM-dd HH:mm");//设计格式
-                datatime = formatter.format(date);//以自己设置的时间格式显示时间 date为当前选择的时间
-                datatype = "1";
-                datarl.setVisibility(View.VISIBLE);
-                datatv.setText("提醒时间：" + datatime);
-            }
-        });
-        d.show();
-    }
+
 
     //获取系统时间
     public static long getdaytime(String date) {
@@ -366,110 +334,11 @@ public class Addnote extends AppCompatActivity{
         return title;
     }
 
-    //调用系统拍照
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == 1) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // 调用系统拍照界面
-                intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                // 区分选择相片
-                startActivityForResult(intent, 2);
-            } else {
-                // Permission Denied
-            }
-        }
-    }
 
-    //数据回调方法
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            // 取得数据
-            Uri uri = data.getData();
-            ContentResolver cr = Addnote.this.getContentResolver();
-            //图片用于储存选择后转换成Bitmap类型
-            Bitmap bitmap = null;
-            //接收返回信息
-            Bundle extras = null;
 
-            // 如果选择的是拍照
-            if (requestCode == 2) {
-                try {
-                    if (uri != null){
-                        bitmap = MediaStore.Images.Media.getBitmap(cr, uri);
-                    }else {
-                        //得到返回数据
-                        extras = data.getExtras();
-                        //获取图片
-                        bitmap = extras.getParcelable("data");
-                    }
-                    // 将拍的照片存入指定的文件夹下
-                    // 获得系统当前时间，并以该时间作为文件名
-                    SimpleDateFormat formatter = new SimpleDateFormat(
-                            "yyyyMMddHHmmss");
-                    // 获取当前时间
-                    Date curDate = new Date(System.currentTimeMillis());
-                    // 当前时间保存成String类型
-                    String str = formatter.format(curDate);
-                    //用于记录图片路径
-                    String paintPath = "";
-                    //图片路径
-                    str = str + "paint.png";
-                    //新建文件夹
-                    File dir = new File("/sdcard/notes/");
-                    //新建文件
-                    File file = new File("/sdcard/notes/", str);
-                    if (!dir.exists()) {// 判断文件夹创建是否成功
-                        dir.mkdir();// 创建文件夹
-                    } else {
-                        if (file.exists()) {
-                            file.delete();
-                        }
-                    }
-                    //新建文件流
-                    FileOutputStream fos = new FileOutputStream(file);
-                    // 将 bitmap 压缩成其他格式的图片数据
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
-                    fos.flush();//结束流传输
-                    fos.close();//关闭流
-                    //图片路径
-                    String path = "/sdcard/notes/" + str;
-                    //插入图片
-                    InsertBitmap(bitmap, 480, path);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
 
-    // 将图片等比例缩放到合适的大小并添加在EditText中
-    void InsertBitmap(Bitmap bitmap, int S, String imgPath) {
-        bitmap = resize(bitmap, S);
-        final ImageSpan imageSpan = new ImageSpan(this, bitmap);
-        SpannableString spannableString = new SpannableString(imgPath);
-        spannableString.setSpan(imageSpan, 0, spannableString.length(),
-                SpannableString.SPAN_MARK_MARK);
-        // 光标移到下一行
-        Editable editable = et_Notes.getEditableText();
-        int selectionIndex = et_Notes.getSelectionStart();
-        spannableString.getSpans(0, spannableString.length(), ImageSpan.class);
-        // 将图片添加进EditText中
-        editable.insert(selectionIndex, spannableString);
-        // 添加图片后自动空出一行
-        et_Notes.append("\n");
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("location", selectionIndex + "-"
-                + (selectionIndex + spannableString.length()));
-        map.put("path", imgPath);
-        imgList.add(map);
-    }
+
 
     // 等比例缩放图片
     private Bitmap resize(Bitmap bitmap, int S) {
@@ -490,12 +359,7 @@ public class Addnote extends AppCompatActivity{
         return bitmap;
     }
 
-    // 取消闹钟
-    public void onDataCancel(View v) {
-        datarl.setVisibility(View.GONE);
-        datatype = "0";// 判断是否开启了闹钟提醒功能
-        datatime = "0";
-    }
+
 
     // 点击闹钟提醒
     public void onDataChange(View v) {
