@@ -1,22 +1,175 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="vertical">
 
-    >
-    <ScrollView
+    <include layout="@layout/back"></include>
+
+    <com.example.myapplication.DIYclass.AdaptScrollView
+        android:id="@+id/absclv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_title"
+        android:layout_marginTop="18dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.example.myapplication.DIYclass.AdaptView
+                android:id="@+id/lv_notes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:horizontalSpacing="10dp"
+                android:numColumns="2"
+                android:verticalSpacing="10dp" />
+        </LinearLayout>
+    </com.example.myapplication.DIYclass.AdaptScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="334dp"
+        android:layout_height="45dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="185dp"
+        android:background="@drawable/navigationbar_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/navigationbar_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <LinearLayout
+                android:layout_width="270dp"
+                android:layout_height="35dp"
+                android:layout_weight="8"
+                android:background="@drawable/title_bg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/title_edittext_search" />
+
+                <EditText
+                    android:id="@+id/et_keyword"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入搜索关键字"
+                    android:imeOptions="actionSearch"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:textColorHint="#000000"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="40dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:background="#DBDBDB"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="onSearch">
+
+                    <TextView
+                        android:id="@+id/title_right_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="搜索"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/iv_icon"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/rq"
+                android:onClick="onData"
+                android:scaleType="fitXY" />
+            <TextView
+                android:id="@+id/add_note"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/addnote" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/add_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:layout_alignParentBottom="true">
+
         <TextView
-            android:id="@+id/tv_note_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
+            android:id="@+id/personel"
+            android:layout_width="54dp"
+            android:layout_height="50dp"
 
-    </ScrollView>
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/user" />
+        <TextView
+            android:id="@+id/memo"
+            android:layout_width="54dp"
+            android:layout_height="50dp"
+
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/memo" />
+
+        <TextView
+            android:id="@+id/memo_share"
+            android:layout_width="54dp"
+            android:layout_height="50dp"
+
+            android:layout_marginStart="175dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/share" />
+    </RelativeLayout>
 
 
-</LinearLayout>
+
+</RelativeLayout>
