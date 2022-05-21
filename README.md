@@ -10,6 +10,42 @@
 
 ![png格式思维导图](https://user-images.githubusercontent.com/82194042/169076618-340a1176-66e2-4cf1-bfbb-987ae1a21244.png)
 
+# 前端原型设计
+
+1.登陆界面
+
+![登录界面](https://user-images.githubusercontent.com/82194042/169657054-6ead8931-60a6-48dd-9fc0-902436f0cdde.png)
+
+2.注册界面
+
+![注册界面](https://user-images.githubusercontent.com/82194042/169657066-a117ff29-e156-4f26-91f2-ce3349e61243.png)
+
+3.日记主界面
+
+![日记主界面](https://user-images.githubusercontent.com/82194042/169657091-06632791-ab1e-45fa-9533-599ea01bfdb8.png)
+
+4.底部导航栏
+![底部导航栏](https://user-images.githubusercontent.com/82194042/169657128-e56a9853-5fdb-45ba-a69a-e12bacc30173.png)
+
+5.日记缩略图
+![日记缩略图](https://user-images.githubusercontent.com/82194042/169657134-c2ef58c5-286e-47ca-ab1f-e81e5d027b78.png)
+
+6.搜索框
+![搜索框](https://user-images.githubusercontent.com/82194042/169657144-77050140-fde9-46ca-b11e-db0cf9d4866e.png)
+
+7.日记新增界面
+![日记新增界面](https://user-images.githubusercontent.com/82194042/169657152-ccf81ea8-ddc6-4ec4-949d-4be2fd2c94b4.png)
+
+8.热门日记详情
+![热门日记详情](https://user-images.githubusercontent.com/82194042/169657163-6d8f309a-8755-4d8f-83d4-d05919d50493.png)
+
+9.个人主页
+![个人主页](https://user-images.githubusercontent.com/82194042/169657173-ebc44487-fa48-4cf6-afe5-437fe30b8c77.png)
+
+10.个人资料编辑
+![个人资料编辑](https://user-images.githubusercontent.com/82194042/169657180-38a7d612-da20-49d4-8076-9cca5e47c6aa.png)
+
+
 
 # 前端系统架构
 
