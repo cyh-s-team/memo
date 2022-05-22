@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -12,12 +12,12 @@ def login(request):
     try:
         person=Person.objects.get(name=name)
     except ObjectDoesNotExist:
-        return HttpResponse('用户不存在')
+        return JsonResponse({'msg':'用户不存在'})
     else:
         if person.password==password:
-            return HttpResponse('登陆成功')
+            return JsonResponse({'msg':'登陆成功'})
         else:
-            return HttpResponse('登录失败')
+            return JsonResponse({'msg':'登录失败'})
 
 #用户注册逻辑
 def sign_up(request):
