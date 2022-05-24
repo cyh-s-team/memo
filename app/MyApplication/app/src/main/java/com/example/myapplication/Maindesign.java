@@ -39,7 +39,7 @@ public class Maindesign extends AppCompatActivity{
     private TextView add_note;//新增键
     private DatabaseOperation dop;//自定义数据库类
     public NoteAdapter adapter;
-    private TextView tv_note_id, tv_locktype, tv_lock;
+    private TextView tv_note_id, tv_locktype, tv_lock,personel,memoshare;
     private AdaptView lv_notes;
     public EditText et_keyword;// 搜索框
     private SQLiteDatabase db;//数据库对象
@@ -75,6 +75,17 @@ public class Maindesign extends AppCompatActivity{
     private void init(){
         tv_back=findViewById(R.id.tv_back);
         add_note=findViewById(R.id.add_note);
+        personel=findViewById(R.id.personel);
+        memoshare=findViewById(R.id.memo_share);
+
+        memoshare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Maindesign.this, Memo_share.class);
+                intent.putExtra("editModel", "newAdd");
+                startActivity(intent);
+            }
+        });
 
         //返回键
         tv_back.setOnClickListener(new View.OnClickListener() {
@@ -93,6 +104,17 @@ public class Maindesign extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+        personel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Maindesign.this, Personel.class);
+                intent.putExtra("editModel1", "newAdd1");
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     //显示备忘录预览列表
@@ -231,7 +253,6 @@ public class Maindesign extends AppCompatActivity{
         alertDialogBuilder.create();//创造弹窗
         alertDialogBuilder.show();//显示弹窗
     }
-
 
 
 
