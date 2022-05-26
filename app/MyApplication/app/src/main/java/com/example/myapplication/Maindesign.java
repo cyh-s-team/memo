@@ -254,6 +254,48 @@ public class Maindesign extends AppCompatActivity{
         alertDialogBuilder.show();//显示弹窗
     }
 
+    // 加密日记打开弹出的输入密码框
+    public void inputTitleDialog(final String lock, final int idtype,
+                                 final int item_id) {// 密码输入框
+        final EditText inputServer = new EditText(this);
+        inputServer.setInputType(InputType.TYPE_CLASS_TEXT
+                | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        inputServer.setFocusable(true);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("请输入密码").setView(inputServer)
+                .setNegativeButton("取消", null);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                String inputName = inputServer.getText().toString();
+                if ("".equals(inputName)) {
+                    Toast.makeText(Maindesign.this, "密码不能为空请重新输入！",
+                            Toast.LENGTH_LONG).show();
+                } else {
+                    if (inputName.equals(lock)) {
+                        if (0 == idtype) {
+                            Intent intent = new Intent(Maindesign.this,
+                                    Addnote.class);
+                            intent.putExtra("editModel", "update");
+                            intent.putExtra("noteId", item_id);
+                            startActivity(intent);
+                        } else if (1 == idtype) {
+                            dop.create_db();
+                            dop.delete_db(item_id);
+                            dop.close_db();
+                            // 刷新列表显示
+                            lv_notes.invalidate();
+                            showNotesList();
+                        }
+                    } else {
+                        Toast.makeText(Maindesign.this, "密码不正确！",
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+        builder.show();
+    }
 
 
 
