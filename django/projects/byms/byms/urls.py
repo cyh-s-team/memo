@@ -15,15 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from user.views import UserLogin,UserRegister
+from user.views import UserLogin,UserRegister,UserChange
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    #用户管理接口,路由命名符合接口规范
     path('UserLogin/',UserLogin),
-    path('UserRegister/',UserRegister)
+    path('UserRegister/',UserRegister),
+    path('UserChange/',UserChange)
 
 
 

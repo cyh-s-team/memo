@@ -25,53 +25,27 @@ def UserRegister(request):
     username = request.params['username']
     passwd = request.params['passwd']
     if len(username) == 0 | len(passwd) == 0:
-        return JsonResponse({'ret': 1})
+        return JsonResponse({'ret': 1, 'msg': '用户名或密码为空'})
     else:
         User.objects.create(userid=userid, username=username, passwd=passwd)
-        return JsonResponse({'ret': 0})
-
-#查询用户详情
-def User(request):
-
-    userid =request.GET.get("userid")
-    qs = User.objects.values()
-
-#修改用户详情
-def UserChange(request): #修改
+        return JsonResponse({'ret': 0, 'msg': '注册成功'})
 
 
-    global modifyUser
+# 修改用户详情
+def UserChange(request):
+    global UserChange
+    userid = request.POST.get('userid')
+    username = request.POST.get('username')
+    passwd = request.POST.get('passwd')
     try:
-        img = request.FILES['userimage']
+        UserChange = User.objects.get(userid=userid)
     except:
-        img = "null"
-    #print(img)
-    #request.params = json.loads(request_copy)
-    userName = request.POST.get('username')
-    passWord = request.POST.get('password')
-    information = request.POST.get('information')
-    briefIntroduction = request.POST.get('introduce')
-    userId = request.POST.get('userid')
-    #print(userId)
-    try:
-        modifyUser = User.objects.get(userid=userId)
-    except :
-        User.objects.create(username=userName,password=passWord,userid=userId,userimage=img)
-        userData = User.objects.get(userid=userId)
-        PlayListCollection.objects.create(playlistname=userId + 'default', userid=userData)
-        PlayList.objects.create(playlistname=userId + 'default',playlistfounder=userId,playlistimage='/img/1255.png')
-        return JsonResponse({'ret': 0})
+        return JsonResponse({'ret': 1, "msg": "用户不存在，请重新输入"})
 
-    if userName:
-        modifyUser.username = userName
-    if passWord:
-        modifyUser.password = passWord
-    if briefIntroduction:
-        modifyUser.briefintroduction = briefIntroduction
-    if information:
-        modifyUser.information = information
-    if img!="null":
-        modifyUser.userimage=img
-    modifyUser.save()
+    if username:
+        UserChange.username = username
+    if passwd:
+        UserChange.passwd = passwd
+    UserChange.save()
 
-    return JsonResponse({'ret': 0})
+    return JsonResponse({'ret': 0, 'msg': '修改成功'})
