@@ -1,28 +1,37 @@
 from django.test import TestCase
 
+# Create your tests here.
+
 import requests
-import unittest
-
-
 class UserTest(TestCase):
 
     def setUp(self):
-        self.user_url = 'http://127.0.0.1:8000/MemoUserLogin/'
+        self.UserLogin_url = 'http://127.0.0.1:8000/UserLogin/'
+        self.UserRegister_url='http://127.0.0.1:8000/UserRegister/'
 
-    def test_login_user(self):  # 错误用户和错误密码
-        form_data = {'username': 'user0016', 'password': 'bbfgb', }
-        r = requests.post(self.user_url, data=form_data)
-        result = r.json()
-        self.assertEqual(result['msg'], '用户不存在')
+    #用户登录单元测试
+    def test_UserLogin(self):
 
-    def test_login_user(self):  # 正确用户和错误密码
-        form_data = {'username': 'cyh', 'password': 'bbfgb', }
-        r = requests.post(self.user_url, data=form_data)
+        # 成功实例
+        r = requests.get(self.UserLogin_url + '?username=' + "cyh" + '&passwd=' + "123")
         result = r.json()
-        self.assertEqual(result['msg'], '登陆失败')
+        self.assertEqual(result['ret'], 0)
 
-    def test_login_user(self):  # 正确用户和正确密码
-        form_data = {'username': 'cyh', 'password': '123', }
-        r = requests.post(self.user_url, data=form_data)
-        result = r.json()
-        self.assertEqual(result['msg'], '登陆成功')
+        # 失败实例
+        q = requests.get(self.UserLogin_url + '?username=' + "cyh" + '&passwd=' + "123456")
+        result = q.json()
+        self.assertEqual(result['ret'], 1)
+
+    def test_UserRegister(self):
+        headers = {"content-type": "application/json"}
+        #成功案例
+        json_data1 = {'userid': '6', 'username': '656', 'passwd': '123'}
+        r1= requests.post(self.UserRegister_url, json=json_data1, headers=headers)
+        result = r1.json()
+        self.assertEqual(result['ret'], 0)
+
+        #失败案例
+        json_data2 = {'userid': '6', 'username': '', 'passwd': '123'}
+        r2 = requests.post(self.UserRegister_url, json=json_data2, headers=headers)
+        result = r2.json()
+        self.assertEqual(result['ret'], 1)

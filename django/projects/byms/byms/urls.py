@@ -15,17 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from User.views import login
-from User.views import sign_up
-from sales.views import listorders
+from user.views import UserLogin,UserRegister
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    # 凡是 url 以 sales/  开头的，
-    # 都根据 sales.urls 里面的 子路由表进行路由
-    path('sales/', include('sales.urls')),
-    path('MemoUserLogin/',login),
+    path('UserLogin/',UserLogin),
+    path('UserRegister/',UserRegister)
+
+
+
+
 
 
 ]
