@@ -7,7 +7,7 @@ from django.shortcuts import render
 from common.models import User
 
 
-# 登录
+# 用户登录
 def UserLogin(request):
     username = request.GET.get('username')
     passwd = request.GET.get('passwd')
@@ -18,7 +18,7 @@ def UserLogin(request):
         return JsonResponse({'ret': 1, 'msg': '登陆失败'})
 
 
-# 注册
+# 用户注册
 def UserRegister(request):
     request.params = json.loads(request.body)
     userid = request.params['userid']
