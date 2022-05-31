@@ -49,3 +49,15 @@ def UserChange(request):
     UserChange.save()
 
     return JsonResponse({'ret': 0, 'msg': '修改成功'})
+
+
+# 获取用户详情
+def GetUser(request):
+    userid = request.params['userid']
+    try:
+        user = User.objects.get(userid=userid)
+    except user.DoesNotExist:
+        return {
+            'ret': 1,
+            'msg': "用户不存在，请重新输入"
+        }

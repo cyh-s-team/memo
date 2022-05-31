@@ -24,7 +24,6 @@ class UserTest(TestCase):
         self.assertEqual(result['ret'], 1)
 
     def test_UserRegister(self):
-        # headers={"content-type","application/json"}
         headers = {"content-type": "application/json"}
 
         #成功案例
