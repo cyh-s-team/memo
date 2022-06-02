@@ -24,19 +24,24 @@ def UserRegister(request):
     userid = request.params['userid']
     username = request.params['username']
     passwd = request.params['passwd']
-    if len(username) == 0 | len(passwd) == 0:
-        return JsonResponse({'ret': 1, 'msg': '用户名或密码为空'})
+    print(userid)
+    if username and passwd:
+        return JsonResponse({'ret': 0, 'msg': '注册成功'})
     else:
         User.objects.create(userid=userid, username=username, passwd=passwd)
-        return JsonResponse({'ret': 0, 'msg': '注册成功'})
+        return JsonResponse({'ret': 1, 'msg': '用户名或密码为空'})
 
 
 # 修改用户详情
 def UserChange(request):
     global UserChange
-    userid = request.POST.get('userid')
-    username = request.POST.get('username')
-    passwd = request.POST.get('passwd')
+    # userid = request.POST.get('userid')
+    # username = request.POST.get('username')
+    # passwd = request.POST.get('passwd')
+    request.params = json.loads(request.body)
+    userid = request.params['userid']
+    username = request.params['username']
+    passwd = request.params['passwd']
     try:
         UserChange = User.objects.get(userid=userid)
     except:
@@ -61,3 +66,5 @@ def GetUser(request):
             'ret': 1,
             'msg': "用户不存在，请重新输入"
         }
+    data = list(user);
+    print(data)
