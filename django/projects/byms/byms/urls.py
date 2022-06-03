@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from user.views import UserLogin,UserRegister,UserChange,GetUser
-from diary.views import NewDiary
+from diary.views import NewDiary,DiaryLock
 
 
 
@@ -28,7 +28,8 @@ urlpatterns = [
     path('UserRegister/',UserRegister),
     path('UserChange/',UserChange),
     path('GetUser/',GetUser),
-    path('NewDiary/',NewDiary)
+    path('NewDiary/',NewDiary),
+    path('DiaryLock/',DiaryLock)
 
 
 

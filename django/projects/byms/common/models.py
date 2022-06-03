@@ -22,8 +22,15 @@ class Diary(models.Model):
     # 日记内容
     content = models.CharField(max_length=2000)
     # 日记是否公开，0代表不公开，1代表公开
-    ifpublic = models.IntegerField()
+    ifpublic = models.IntegerField(default=0)
     # 日记是否上锁，0代表没上锁，1代表上锁
-    iflock = models.IntegerField()
+    iflock = models.IntegerField(default=0)
     # 日记是否公开，0代表不公开，1代表公开
-    ifremind = models.IntegerField()
+    ifremind = models.IntegerField(default=0)
+
+
+class DiaryLock(models.Model):
+    #日记锁id
+    lockid= models.CharField(max_length=200, primary_key=True)
+    #日记锁密码
+    lockpasswd=models.CharField(max_length=2000)
