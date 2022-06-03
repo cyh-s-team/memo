@@ -28,5 +28,18 @@ class UserTest(TestCase):
     #         result2 = r2.json()
     #         self.assertEqual(result2['ret'], 1)
 
-   
+    def test_DiaryLock(self):
+        headers = {"content-type": "application/json"}
+
+        #成功案例
+        json_data1 = {'lockid':'11','lockpasswd':'123456'}
+        r1 = requests.post(self.DiaryLock_url, json=json_data1, headers=headers)
+        result1 = r1.json()
+        self.assertEqual(result1['ret'], 0)
+
+        # 失败案例
+        json_data2 = {'lockid':'11','lockpasswd':''}
+        r2 = requests.post(self.DiaryLock_url, json=json_data2, headers=headers)
+        result2 = r2.json()
+        self.assertEqual(result2['ret'], 1)
 
