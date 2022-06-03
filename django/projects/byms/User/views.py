@@ -24,11 +24,10 @@ def UserRegister(request):
     userid = request.params['userid']
     username = request.params['username']
     passwd = request.params['passwd']
-    print(userid)
     if username and passwd:
+        User.objects.create(userid=userid, username=username, passwd=passwd)
         return JsonResponse({'ret': 0, 'msg': '注册成功'})
     else:
-        User.objects.create(userid=userid, username=username, passwd=passwd)
         return JsonResponse({'ret': 1, 'msg': '用户名或密码为空'})
 
 
