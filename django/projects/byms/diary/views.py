@@ -63,14 +63,16 @@ def LockCancel(request):
 
 # 日记删除
 def DeleteDiary(request):
+    request.params = json.loads(request.body)
     global diarychange, lockdatachange
-    diaryid=request.params['diaryid']
+    diaryid = request.params['diaryid']
     lockid=diaryid
     #删除日记
     diarychange = Diary.objects.get(diaryid=diaryid)
     diarychange.delete()
-    # 日记删除，密码锁也跟着删除
-    lockdatachange = DiaryLockData.objects.get(lockid=lockid)
+
+    # 如果日记有密码锁,日记删除，密码锁也跟着删除
+    lockdatachange=DiaryLockData.objects.get(lockid=lockid)
     lockdatachange.delete()
     return JsonResponse({'ret': 0, 'msg': '日记删除成功'})
 

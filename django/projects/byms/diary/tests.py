@@ -13,6 +13,7 @@ class UserTest(TestCase):
         self.NewDiary_url = 'http://127.0.0.1:8000/NewDiary/'
         self.DiaryLock_url='http://127.0.0.1:8000/DiaryLock/'
         self.LockCancel_url='http://127.0.0.1:8000/LockCancel/'
+        self.DeleteDiary_url='http://127.0.0.1:8000/DeleteDiary/'
 
     #新增日记单元测试
     # def test_NewDiary(self):
@@ -56,6 +57,17 @@ class UserTest(TestCase):
     #     r1 = requests.post(self.LockCancel_url, json=json_data1, headers=headers)
     #     result1 = r1.json()
     #     self.assertEqual(result1['ret'], 0)
+
+    # 日记删除单元测试
+    def test_DeleteDiary(self):
+        headers = {"content-type": "application/json"}
+
+        #成功案例
+        json_data1 = {'diaryid':'11'}
+        r1 = requests.post(self.DeleteDiary_url, json=json_data1, headers=headers)
+        result1 = r1.json()
+        self.assertEqual(result1['ret'], 0)
+
 
 
 
