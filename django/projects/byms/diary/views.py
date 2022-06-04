@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 
 
-from common.models import Diary,DiaryLock
+from common.models import Diary, DiaryLockData
 
 
 # 新增日记
@@ -30,14 +30,36 @@ def DiaryLock(request):
     # lockid和diaryid应始终保持一致
     lockid = request.params['lockid']
     lockpasswd = request.params['lockpasswd']
-    diaryid=lockid
+    diaryid = lockid
 
-    if(lockpasswd):
-        DiaryLock.objects.create(lockid=lockid,lockpasswd=lockpasswd)
-        #将日记表的是否有密码更改为1，即代表有密码
-        diarychange = Diary.objects.values("").filter(diaryid=diaryid)
-        Diary.iflock=1
+    if lockpasswd:
+        DiaryLockData.objects.create(lockid=lockid, lockpasswd=lockpasswd)
+
+        # 将日记表的是否有密码更改为1，即代表有密码
+        diarychange = Diary.objects.get(diaryid=diaryid)
+        diarychange.iflock = 1
+        diarychange.save()
         return JsonResponse({'ret': 0, 'msg': '密码创建成功'})
     else:
         return JsonResponse({'ret': 1, 'msg': '密码不能为空'})
+
+
+# 日记解锁
+def LockCancel(request):
+    request.params = json.loads(request.body)
+    global diarychange,lockdatachange
+    # lockid和diaryid应始终保持一致
+    lockid = request.params['lockid']
+
+    #日记的是否上锁改为0
+    diaryid = lockid
+    diarychange=Diary.objects.get(diaryid=diaryid)
+    diarychange.iflock = 0
+    diarychange.save()
+
+    lockdatachange=DiaryLockData.objects.get(lockid=lockid)
+    lockdatachange.delete()
+    return JsonResponse({'ret': 0, 'msg': '密码锁已删除'})
+
+
 

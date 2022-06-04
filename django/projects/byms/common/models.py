@@ -29,7 +29,7 @@ class Diary(models.Model):
     ifremind = models.IntegerField(default=0)
 
 
-class DiaryLock(models.Model):
+class DiaryLockData(models.Model):
     #日记锁id
     lockid= models.CharField(max_length=200, primary_key=True)
     #日记锁密码

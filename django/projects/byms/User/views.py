@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.gis import serializers
 from django.http import JsonResponse
 from django.shortcuts import render
 
@@ -34,9 +35,7 @@ def UserRegister(request):
 # 修改用户详情
 def UserChange(request):
     global UserChange
-    # userid = request.POST.get('userid')
-    # username = request.POST.get('username')
-    # passwd = request.POST.get('passwd')
+
     request.params = json.loads(request.body)
     userid = request.params['userid']
     username = request.params['username']
@@ -57,22 +56,22 @@ def UserChange(request):
 
 # 获取用户详情
 def GetUser(request):
+    global user
     request.params = json.loads(request.body)
     userid = request.params['userid']
     try:
-        #user = User.objects.get(userid=userid)
-        user = User.objects.values("passwd").filter(userid=userid)
-        data = list(user)
-        print(data)
-        s=data[0]['passwd']
-    except user.DoesNotExist:
+        user = User.objects.get(userid=userid)
+    except User.DoesNotExist:
         return {
             'ret': 1,
             'msg': "用户不存在，请重新输入"
         }
-    data = list(user)
-    print(data)
+
+    passwddata=User.objects.values("passwd").filter(userid=userid)
+    data = list(passwddata)
+    passwd = data[0]['passwd']
+
     return JsonResponse({
         'ret': 0,
-        'pwd': s
+        'pwd': passwd
     })
