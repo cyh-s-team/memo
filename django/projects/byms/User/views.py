@@ -54,7 +54,7 @@ def UserChange(request):
     return JsonResponse({'ret': 0, 'msg': '修改成功'})
 
 
-# 获取用户详情
+# 获取用户详情(用于找回密码)
 def GetUser(request):
     global user
     request.params = json.loads(request.body)

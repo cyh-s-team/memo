@@ -11,11 +11,12 @@ class UserTest(TestCase):
 
     def setUp(self):
         self.NewDiary_url = 'http://127.0.0.1:8000/NewDiary/'
-        self.DiaryLock_url='http://127.0.0.1:8000/DiaryLock/'
-        self.LockCancel_url='http://127.0.0.1:8000/LockCancel/'
-        self.DeleteDiary_url='http://127.0.0.1:8000/DeleteDiary/'
+        self.DiaryLock_url = 'http://127.0.0.1:8000/DiaryLock/'
+        self.LockCancel_url = 'http://127.0.0.1:8000/LockCancel/'
+        self.DeleteDiary_url = 'http://127.0.0.1:8000/DeleteDiary/'
+        self.GetDiary_uel = 'http://127.0.0.1:8000/GetDiary/'
 
-    #新增日记单元测试
+    # 新增日记单元测试
     # def test_NewDiary(self):
     #         headers = {"content-type": "application/json"}
     #
@@ -31,7 +32,7 @@ class UserTest(TestCase):
     #         result2 = r2.json()
     #         self.assertEqual(result2['ret'], 1)
 
-    #日记上锁单元测试
+    # 日记上锁单元测试
     # def test_DiaryLock(self):
     #     headers = {"content-type": "application/json"}
     #
@@ -47,8 +48,7 @@ class UserTest(TestCase):
     #     result2 = r2.json()
     #     self.assertEqual(result2['ret'], 1)
 
-
-    #日记解锁单元测试
+    # 日记解锁单元测试
     # def test_LockCancel(self):
     #     headers = {"content-type": "application/json"}
     #
@@ -59,16 +59,18 @@ class UserTest(TestCase):
     #     self.assertEqual(result1['ret'], 0)
 
     # 日记删除单元测试
-    def test_DeleteDiary(self):
-        headers = {"content-type": "application/json"}
+    # def test_DeleteDiary(self):
+    #     headers = {"content-type": "application/json"}
+    #
+    #     #成功案例
+    #     json_data1 = {'diaryid':'22'}
+    #     r1 = requests.post(self.DeleteDiary_url, json=json_data1, headers=headers)
+    #     result1 = r1.json()
+    #     self.assertEqual(result1['ret'], 0)
 
-        #成功案例
-        json_data1 = {'diaryid':'11'}
-        r1 = requests.post(self.DeleteDiary_url, json=json_data1, headers=headers)
-        result1 = r1.json()
+    # 用户登录单元测试
+    def test_GetDiary(self):
+        # 成功实例
+        r = requests.get(self.GetDiary_uel + '?diaryid=' + "111")
+        result1 = r.json()
         self.assertEqual(result1['ret'], 0)
-
-
-
-
-

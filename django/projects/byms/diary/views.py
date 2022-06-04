@@ -47,33 +47,57 @@ def DiaryLock(request):
 # 日记解锁
 def LockCancel(request):
     request.params = json.loads(request.body)
-    global diarychange,lockdatachange
+    global diarychange, lockdatachange
     # lockid和diaryid应始终保持一致
     lockid = request.params['lockid']
 
-    #日记的是否上锁改为0
+    # 日记的是否上锁改为0
     diaryid = lockid
-    diarychange=Diary.objects.get(diaryid=diaryid)
+    diarychange = Diary.objects.get(diaryid=diaryid)
     diarychange.iflock = 0
     diarychange.save()
 
-    lockdatachange=DiaryLockData.objects.get(lockid=lockid)
+    lockdatachange = DiaryLockData.objects.get(lockid=lockid)
     lockdatachange.delete()
     return JsonResponse({'ret': 0, 'msg': '密码锁已删除'})
+
+
+# 获取日记详情
+def GetDiary(request):
+    diaryid=request.GET.get('diaryid')
+    #得到日记标题内容
+    titledata = Diary.objects.values("title").filter(diaryid=diaryid)
+    data1 = list(titledata)
+    title = data1[0]['title']
+    print(title)
+
+    #得到日记正文内容
+    contentdata = Diary.objects.values("content").filter(diaryid=diaryid)
+    data2 = list(contentdata)
+    content = data2[0]['content']
+    print(content)
+
+
+    return JsonResponse({'ret': 0,
+                         'title': title,
+                         'content':content
+                         })
+
+
 
 # 日记删除
 def DeleteDiary(request):
     request.params = json.loads(request.body)
     global diarychange, lockdatachange
     diaryid = request.params['diaryid']
-    lockid=diaryid
-    #删除日记
+    lockid = diaryid
+    # 删除日记
     diarychange = Diary.objects.get(diaryid=diaryid)
-    diarychange.delete()
 
     # 如果日记有密码锁,日记删除，密码锁也跟着删除
-    lockdatachange=DiaryLockData.objects.get(lockid=lockid)
-    lockdatachange.delete()
+    print(diarychange.iflock)
+    if diarychange.iflock == 1:
+        lockdatachange = DiaryLockData.objects.get(lockid=lockid)
+        lockdatachange.delete()
+    diarychange.delete()
     return JsonResponse({'ret': 0, 'msg': '日记删除成功'})
-
-
