@@ -35,7 +35,7 @@ def DiaryLock(request):
     if(lockpasswd):
         DiaryLock.objects.create(lockid=lockid,lockpasswd=lockpasswd)
         #将日记表的是否有密码更改为1，即代表有密码
-        diarychange = Diary.objects.get(diaryid=diaryid)
+        diarychange = Diary.objects.values("").filter(diaryid=diaryid)
         Diary.iflock=1
         return JsonResponse({'ret': 0, 'msg': '密码创建成功'})
     else:
