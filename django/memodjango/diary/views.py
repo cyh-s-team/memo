@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 
 
-from common.models import Diary, DiaryLockData
+from common.models import Diary, DiaryLockData, DiaryRemindData
 
 
 # 新增日记
@@ -101,3 +101,18 @@ def DeleteDiary(request):
         lockdatachange.delete()
     diarychange.delete()
     return JsonResponse({'ret': 0, 'msg': '日记删除成功'})
+
+#创建日记提醒
+def DiaryRemind(request):
+    request.params = json.loads(request.body)
+    global diarychange
+    # remindid和diaryid应始终保持一致
+    remindid = request.params['remindid']
+    remindtime = request.params['remindtime']
+    diaryid = remindid
+
+    DiaryRemindData.objects.create(remindid=remindid, remindtime=remindtime)
+    diarychange = Diary.objects.get(diaryid=diaryid)
+    diarychange.ifremind = 1
+    diarychange.save()
+    return JsonResponse({'ret': 0})

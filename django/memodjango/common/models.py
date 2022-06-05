@@ -13,7 +13,7 @@ class User(models.Model):
     # 用户密码
     passwd = models.CharField(max_length=50)
 
-
+#日记表
 class Diary(models.Model):
     # 日记id
     diaryid = models.CharField(max_length=200, primary_key=True)
@@ -28,9 +28,16 @@ class Diary(models.Model):
     # 日记是否公开，0代表不公开，1代表公开
     ifremind = models.IntegerField(default=0)
 
-
+#日记上锁表
 class DiaryLockData(models.Model):
     #日记锁id
     lockid= models.CharField(max_length=200, primary_key=True)
     #日记锁密码
     lockpasswd=models.CharField(max_length=2000)
+
+#日记提醒时间表
+class DiaryRemindData(models.Model):
+    #日记提醒id
+    remindid=models.CharField(max_length=200, primary_key=True)
+    #日记提醒时间
+    remindtime=models.CharField(max_length=200)
