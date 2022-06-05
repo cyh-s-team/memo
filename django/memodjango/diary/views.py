@@ -116,3 +116,21 @@ def DiaryRemind(request):
     diarychange.ifremind = 1
     diarychange.save()
     return JsonResponse({'ret': 0})
+
+#取消日记提醒时间
+def DeleteDiaryRemind(request):
+    request.params = json.loads(request.body)
+    global diarychange, reminddatachange
+    # remindid和diaryid应始终保持一致
+    remindid = request.params['remindid']
+
+    # 日记的是否设置提醒时间改为0
+    diaryid = remindid
+    diarychange = Diary.objects.get(diaryid=diaryid)
+    diarychange.ifremind = 0
+    diarychange.save()
+
+    reminddatachange = DiaryRemindData.objects.get(remindid=remindid)
+    reminddatachange.delete()
+    return JsonResponse({'ret': 0, 'msg': '日记提醒已取消'})
+

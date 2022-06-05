@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from User.views import UserLogin,UserRegister,UserChange,GetUser
-from diary.views import NewDiary, DiaryLock,LockCancel,DeleteDiary,GetDiary,DiaryRemind
+from diary.views import NewDiary, DiaryLock,LockCancel,DeleteDiary,GetDiary,DiaryRemind,DeleteDiaryRemind
 
 
 
@@ -33,7 +33,8 @@ urlpatterns = [
     path('LockCancel/',LockCancel),
     path('DeleteDiary/',DeleteDiary),
     path('GetDiary/',GetDiary),
-    path('DiaryRemind/',DiaryRemind)
+    path('DiaryRemind/',DiaryRemind),
+    path('DeleteDiaryRemind/',DeleteDiaryRemind)
 
 
 
