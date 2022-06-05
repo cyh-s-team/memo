@@ -17,6 +17,7 @@ class UserTest(TestCase):
         self.GetDiary_url = 'http://127.0.0.1:8000/GetDiary/'
         self.DiaryRemind_url='http://127.0.0.1:8000/DiaryRemind/'
         self.DeleteDiaryRemind_url='http://127.0.0.1:8000/DeleteDiaryRemind/'
+        self.DiarySearch_url='http://127.0.0.1:8000/DiarySearch/'
 
     # 新增日记单元测试
     # def test_NewDiary(self):
@@ -89,13 +90,23 @@ class UserTest(TestCase):
 
 
     #取消日记提醒时间单元测试
-    def test_DeleteDiaryRemind(self):
-        headers = {"content-type": "application/json"}
+    # def test_DeleteDiaryRemind(self):
+    #     headers = {"content-type": "application/json"}
+    #
+    #     #成功案例
+    #     json_data1 = {'remindid':'111'}
+    #     r1 = requests.post(self.DeleteDiaryRemind_url, json=json_data1, headers=headers)
+    #     result1 = r1.json()
+    #     self.assertEqual(result1['ret'], 0)
 
-        #成功案例
-        json_data1 = {'remindid':'111'}
-        r1 = requests.post(self.DeleteDiaryRemind_url, json=json_data1, headers=headers)
-        result1 = r1.json()
+
+    #日记按内容搜索单元测试
+    def test_DiarySearch(self):
+        # 成功实例
+        r = requests.get(self.DiarySearch_url + '?content=' + "abc" )
+        result1 = r.json()
         self.assertEqual(result1['ret'], 0)
+
+
 
 
