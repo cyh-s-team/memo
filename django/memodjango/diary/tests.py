@@ -33,30 +33,30 @@ class UserTest(TestCase):
     #         self.assertEqual(result2['ret'], 1)
 
     # 日记上锁单元测试
-    def test_DiaryLock(self):
-        headers = {"content-type": "application/json"}
-
-        #成功案例
-        json_data1 = {'lockid':'111','lockpasswd':'123456'}
-        r1 = requests.post(self.DiaryLock_url, json=json_data1, headers=headers)
-        result1 = r1.json()
-        self.assertEqual(result1['ret'], 0)
-
-        # 失败案例
-        json_data2 = {'lockid':'111','lockpasswd':''}
-        r2 = requests.post(self.DiaryLock_url, json=json_data2, headers=headers)
-        result2 = r2.json()
-        self.assertEqual(result2['ret'], 1)
-
-    # 日记解锁单元测试
-    # def test_LockCancel(self):
+    # def test_DiaryLock(self):
     #     headers = {"content-type": "application/json"}
     #
     #     #成功案例
-    #     json_data1 = {'lockid':'11'}
-    #     r1 = requests.post(self.LockCancel_url, json=json_data1, headers=headers)
+    #     json_data1 = {'lockid':'111','lockpasswd':'123456'}
+    #     r1 = requests.post(self.DiaryLock_url, json=json_data1, headers=headers)
     #     result1 = r1.json()
     #     self.assertEqual(result1['ret'], 0)
+    #
+    #     # 失败案例
+    #     json_data2 = {'lockid':'111','lockpasswd':''}
+    #     r2 = requests.post(self.DiaryLock_url, json=json_data2, headers=headers)
+    #     result2 = r2.json()
+    #     self.assertEqual(result2['ret'], 1)
+
+    # 日记解锁单元测试
+    def test_LockCancel(self):
+        headers = {"content-type": "application/json"}
+
+        #成功案例
+        json_data1 = {'lockid':'111'}
+        r1 = requests.post(self.LockCancel_url, json=json_data1, headers=headers)
+        result1 = r1.json()
+        self.assertEqual(result1['ret'], 0)
 
     # 日记删除单元测试
     # def test_DeleteDiary(self):
