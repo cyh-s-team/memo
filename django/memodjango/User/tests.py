@@ -14,12 +14,12 @@ class UserTest(TestCase):
         self.UserChange_url = 'http://127.0.0.1:8000/UserChange/'
         self.GetUser_url='http://127.0.0.1:8000/GetUser/'
 
-    # 用户登录单元测试
-    # def test_UserLogin(self):
-    #     # 成功实例
-    #     r = requests.get(self.UserLogin_url + '?username=' + "cyh" + '&passwd=' + "123")
-    #     result1 = r.json()
-    #     self.assertEqual(result1['ret'], 0)
+    #用户登录单元测试
+    def test_UserLogin(self):
+        # 成功实例
+        r = requests.get(self.UserLogin_url + '?username=' + "cyh" + '&passwd=' + "123")
+        result1 = r.json()
+        self.assertEqual(result1['ret'], 0)
     #
     #     # 失败实例
     #     q = requests.get(self.UserLogin_url + '?username=' + "cyh" + '&passwd=' + "123456")

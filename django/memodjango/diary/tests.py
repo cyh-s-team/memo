@@ -68,9 +68,9 @@ class UserTest(TestCase):
     #     result1 = r1.json()
     #     self.assertEqual(result1['ret'], 0)
 
-    # 获得日记详情单元测试
-    def test_GetDiary(self):
-        # 成功实例
-        r = requests.get(self.GetDiary_uel + '?diaryid=' + "111")
-        result1 = r.json()
-        self.assertEqual(result1['ret'], 0)
+    # # 获得日记详情单元测试
+    # def test_GetDiary(self):
+    #     # 成功实例
+    #     r = requests.get(self.GetDiary_uel + '?diaryid=' + "111")
+    #     result1 = r.json()
+    #     self.assertEqual(result1['ret'], 0)
