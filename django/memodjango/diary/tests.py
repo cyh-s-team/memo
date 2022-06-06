@@ -101,11 +101,11 @@ class UserTest(TestCase):
 
 
     #日记按内容搜索单元测试
-    def test_DiarySearch(self):
-        # 成功实例
-        r = requests.get(self.DiarySearch_url + '?content=' + "abc" )
-        result1 = r.json()
-        self.assertEqual(result1['ret'], 0)
+    # def test_DiarySearch(self):
+    #     # 成功实例
+    #     r = requests.get(self.DiarySearch_url + '?content=' + "abc" )
+    #     result1 = r.json()
+    #     self.assertEqual(result1['ret'], 0)
 
 
 
