@@ -134,6 +134,7 @@ def DeleteDiaryRemind(request):
     reminddatachange.delete()
     return JsonResponse({'ret': 0, 'msg': '日记提醒已取消'})
 
+#日记按内容搜索
 def DiarySearch(request):
     content= request.GET.get('content')
     data = list(Diary.objects.values("diaryid").filter(content__contains=content))

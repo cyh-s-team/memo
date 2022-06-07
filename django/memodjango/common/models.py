@@ -59,3 +59,13 @@ class Personel(models.Model):
     commentnum=models.IntegerField(default=0)
     #点赞数
     likenum=models.IntegerField(default=0)
+
+class LikeList(models.Model):
+    #日记id
+    diaryid = models.CharField(max_length=200)
+    #点赞人id
+    personid1 = models.CharField(max_length=200)
+    #被点赞人id
+    personid2=models.CharField(max_length=200)
+    #点赞时间
+    liketime=models.CharField(max_length=200)

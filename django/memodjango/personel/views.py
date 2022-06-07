@@ -5,7 +5,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from common.models import Diary, DiaryLockData, DiaryRemindData,Personel
+from common.models import Diary, DiaryLockData, DiaryRemindData,Personel,LikeList
 
 # 创建用户详情（用于用户第一次登录时，对有关资料的填写）
 def NewPersonel(request):
@@ -64,3 +64,11 @@ def GetPersonel(request):
                          'commentnum': title4,
                          'likenum': title42,
                          })
+
+#获取点赞列表
+def GetPersonelLike(request):
+    personid2= request.GET.get('personid2')
+    data = list(LikeList.objects.values().filter(personid2__contains=personid2))
+    print(data)
+    return JsonResponse({'ret': 0,
+                         'data':data})
