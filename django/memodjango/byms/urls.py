@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path,include
 from User.views import UserLogin,UserRegister,UserChange,GetUser
 from diary.views import NewDiary, DiaryLock,LockCancel,DeleteDiary,GetDiary,DiaryRemind,DeleteDiaryRemind,DiarySearch
-from personel.views import NewPersonel
+from personel.views import NewPersonel,GetPersonel
 
 
 
@@ -37,7 +37,10 @@ urlpatterns = [
     path('DiaryRemind/',DiaryRemind),
     path('DeleteDiaryRemind/',DeleteDiaryRemind),
     path('DiarySearch/',DiarySearch),
-    path('NewPersonel/',NewPersonel)
+    path('NewPersonel/',NewPersonel),
+    path('GetPersonel/',GetPersonel)
+
+
 
 
 

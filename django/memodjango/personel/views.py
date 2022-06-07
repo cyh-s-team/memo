@@ -18,3 +18,49 @@ def NewPersonel(request):
         return JsonResponse({'ret': 0, 'msg': '创建个人详情成功'})
     else:
         return JsonResponse({'ret': 1, 'msg': '用户名不能为空！'})
+
+# 获取用户详情
+def GetPersonel(request):
+    personid=request.GET.get('personid')
+
+
+    personname=Personel.objects.values("personname").filter(personid=personid)
+    data1 = list(personname)
+    title = data1[0]['personname']
+    print(title)
+
+    personsign = Personel.objects.values("personsign").filter(personid=personid)
+    data11 = list(personsign)
+    title1 = data11[0]['personsign']
+    print(title1)
+
+    follownum= Personel.objects.values("follownum").filter(personid=personid)
+    data12 = list(follownum)
+    title2 = data12[0]['follownum']
+    print(title2)
+
+    fansnum = Personel.objects.values("fansnum").filter(personid=personid)
+    data13 = list(fansnum)
+    title3 = data13[0]['fansnum']
+    print(title3)
+
+    commentnum = Personel.objects.values("commentnum").filter(personid=personid)
+    data14 = list(commentnum)
+    title4 = data14[0]['commentnum']
+    print(title4)
+
+    likenum = Personel.objects.values("likenum").filter(personid=personid)
+    data142 = list(likenum)
+    title42 = data142[0]['likenum']
+    print(title42)
+
+
+
+    return JsonResponse({'ret': 0,
+                         'personname': title,
+                         'personsign':title1,
+                         'follownum': title2,
+                         'fansnum ': title3,
+                         'commentnum': title4,
+                         'likenum': title42,
+                         })
