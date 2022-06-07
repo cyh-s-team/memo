@@ -12,6 +12,7 @@ class Public_Diary_Test(TestCase):
 
 
 
+##
     # # 关注用户单元测试
     def test_PersonFollow(self):
         headers = {"content-type": "application/json"}
