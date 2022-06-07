@@ -60,6 +60,7 @@ class Personel(models.Model):
     #点赞数
     likenum=models.IntegerField(default=0)
 
+#点赞表
 class LikeList(models.Model):
     #日记id
     diaryid = models.CharField(max_length=200)
@@ -70,6 +71,7 @@ class LikeList(models.Model):
     #点赞时间
     liketime=models.CharField(max_length=200)
 
+#评论表
 class CommentList(models.Model):
     #日记id
     diaryid = models.CharField(max_length=200)
@@ -81,3 +83,12 @@ class CommentList(models.Model):
     commentcontent=models.CharField(max_length=200)
     #点赞时间
     commenttime=models.CharField(max_length=200)
+
+#关注表
+class FollowList(models.Model):
+    #关注人id
+    personid1 = models.CharField(max_length=200)
+    #被关注人id
+    personid2=models.CharField(max_length=200)
+    #点赞时间
+    followtime=models.CharField(max_length=200)

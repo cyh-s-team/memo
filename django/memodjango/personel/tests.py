@@ -52,14 +52,14 @@ class PersonelTest(TestCase):
     #     self.assertEqual(result1['ret'], 0)
 
     # 修改个人资料单元测试
-    def test_ChangePersonel(self):
-        headers = {"content-type": "application/json"}
-
-        #成功案例
-        json_data1 = {'personid': '111', 'personname': 'cyhcyhcyh', 'personsign': '12312332131'}
-        r1 = requests.post(self.ChangePersonel_url, json=json_data1, headers=headers)
-        result1 = r1.json()
-        self.assertEqual(result1['ret'], 0)
+    # def test_ChangePersonel(self):
+    #     headers = {"content-type": "application/json"}
+    #
+    #     #成功案例
+    #     json_data1 = {'personid': '111', 'personname': 'cyhcyhcyh', 'personsign': '12312332131'}
+    #     r1 = requests.post(self.ChangePersonel_url, json=json_data1, headers=headers)
+    #     result1 = r1.json()
+    #     self.assertEqual(result1['ret'], 0)
 
 
 
