@@ -69,3 +69,15 @@ class LikeList(models.Model):
     personid2=models.CharField(max_length=200)
     #点赞时间
     liketime=models.CharField(max_length=200)
+
+class CommentList(models.Model):
+    #日记id
+    diaryid = models.CharField(max_length=200)
+    #评论人id
+    personid1 = models.CharField(max_length=200)
+    #被评论人id
+    personid2=models.CharField(max_length=200)
+    #评论内容
+    commentcontent=models.CharField(max_length=200)
+    #点赞时间
+    commenttime=models.CharField(max_length=200)

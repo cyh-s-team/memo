@@ -11,6 +11,7 @@ class PersonelTest(TestCase):
         self.NewPersonel_url = 'http://127.0.0.1:8000/NewPersonel/'
         self.GetPersonel_url='http://127.0.0.1:8000/GetPersonel/'
         self.GetPersonelLike_url='http://127.0.0.1:8000/GetPersonelLike/'
+        self.GetPersonelComment_url='http://127.0.0.1:8000/GetPersonelComment/'
 
     #创建用户详情测试
     # def test_NewPersonel(self):
@@ -36,9 +37,16 @@ class PersonelTest(TestCase):
     #     self.assertEqual(result1['ret'], 0)
 
     # 获取点赞列表单元测试
-    def test_GetPersonelLike(self):
+    # def test_GetPersonelLike(self):
+    #     # 成功实例
+    #     r = requests.get(self.GetPersonelLike_url + '?personid2=' + "11")
+    #     result1 = r.json()
+    #     self.assertEqual(result1['ret'], 0)
+
+    # 获取评论列表单元测试
+    def test_GetPersonelComment(self):
         # 成功实例
-        r = requests.get(self.GetPersonelLike_url + '?personid2=' + "11")
+        r = requests.get(self.GetPersonelComment_url + '?personid2=' + "11")
         result1 = r.json()
         self.assertEqual(result1['ret'], 0)
 
