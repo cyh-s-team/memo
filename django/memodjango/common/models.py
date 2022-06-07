@@ -41,3 +41,21 @@ class DiaryRemindData(models.Model):
     remindid=models.CharField(max_length=200, primary_key=True)
     #日记提醒时间
     remindtime=models.CharField(max_length=200)
+
+
+#个人详情表
+class Personel(models.Model):
+    #个人id
+    personid=models.CharField(max_length=200, primary_key=True)
+    #用户名
+    personname=models.CharField(max_length=200)
+    #个性签名
+    personsign=models.CharField(max_length=200)
+    #关注数
+    follownum=models.IntegerField(default=0)
+    #粉丝数
+    fansnum=models.IntegerField(default=0)
+    #评论数
+    commentnum=models.IntegerField(default=0)
+    #点赞数
+    likenum=models.IntegerField(default=0)
