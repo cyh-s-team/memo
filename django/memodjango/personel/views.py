@@ -80,3 +80,22 @@ def GetPersonelComment(request):
     print(data)
     return JsonResponse({'ret': 0,
                          'data':data})
+
+# 修改用户详情
+def ChangePersonel(request):
+    global PersonChange
+
+    request.params = json.loads(request.body)
+    personid = request.params['personid']
+    personname = request.params['personname']
+    personsign = request.params['personsign']
+
+    PersonChange = Personel.objects.get(personid=personid)
+
+    if personname:
+        PersonChange.personname = personname
+    if personsign:
+        PersonChange.personsign = personsign
+    PersonChange.save()
+
+    return JsonResponse({'ret': 0, 'msg': '修改成功'})

@@ -12,6 +12,7 @@ class PersonelTest(TestCase):
         self.GetPersonel_url='http://127.0.0.1:8000/GetPersonel/'
         self.GetPersonelLike_url='http://127.0.0.1:8000/GetPersonelLike/'
         self.GetPersonelComment_url='http://127.0.0.1:8000/GetPersonelComment/'
+        self.ChangePersonel_url='http://127.0.0.1:8000/ChangePersonel/'
 
     #创建用户详情测试
     # def test_NewPersonel(self):
@@ -44,11 +45,23 @@ class PersonelTest(TestCase):
     #     self.assertEqual(result1['ret'], 0)
 
     # 获取评论列表单元测试
-    def test_GetPersonelComment(self):
-        # 成功实例
-        r = requests.get(self.GetPersonelComment_url + '?personid2=' + "11")
-        result1 = r.json()
+    # def test_GetPersonelComment(self):
+    #     # 成功实例
+    #     r = requests.get(self.GetPersonelComment_url + '?personid2=' + "11")
+    #     result1 = r.json()
+    #     self.assertEqual(result1['ret'], 0)
+
+    # 修改个人资料单元测试
+    def test_ChangePersonel(self):
+        headers = {"content-type": "application/json"}
+
+        #成功案例
+        json_data1 = {'personid': '111', 'personname': 'cyhcyhcyh', 'personsign': '12312332131'}
+        r1 = requests.post(self.ChangePersonel_url, json=json_data1, headers=headers)
+        result1 = r1.json()
         self.assertEqual(result1['ret'], 0)
+
+
 
 
 
