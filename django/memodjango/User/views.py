@@ -73,5 +73,6 @@ def GetUser(request):
 
     return JsonResponse({
         'ret': 0,
-        'pwd': passwd
+        'msg':"找回密码成功",
+        'passwd': passwd
     })

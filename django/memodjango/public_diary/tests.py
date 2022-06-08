@@ -69,14 +69,14 @@ class Public_Diary_Test(TestCase):
 
 
     #删除日记单元测试
-    def test_DeleteDiaryComment(self):
-        headers = {"content-type": "application/json"}
-
-        # 成功案例
-        json_data1 = {'diaryid':'11','personid1': '111','commenttime':'2011-1-1 11:11'}
-        r1 = requests.post(self.DeleteDiaryComment_url, json=json_data1, headers=headers)
-        result1 = r1.json()
-        self.assertEqual(result1['ret'], 0)
+    # def test_DeleteDiaryComment(self):
+    #     headers = {"content-type": "application/json"}
+    #
+    #     # 成功案例
+    #     json_data1 = {'diaryid':'11','personid1': '111','commenttime':'2011-1-1 11:11'}
+    #     r1 = requests.post(self.DeleteDiaryComment_url, json=json_data1, headers=headers)
+    #     result1 = r1.json()
+    #     self.assertEqual(result1['ret'], 0)
 
 
 
