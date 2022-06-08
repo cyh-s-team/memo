@@ -113,3 +113,26 @@ def DiaryComment(request):
     Person2Change.save()
 
     return JsonResponse({'ret': 0, 'msg': '评论成功'})
+
+#删除评论
+def DeleteDiaryComment(request):
+    request.params = json.loads(request.body)
+    #点赞人id
+    personid1 = request.params['personid1']
+    #日记id
+    diaryid = request.params['diaryid']
+    #日记评论时间
+    commenttime=request.params['commenttime']
+
+    global CommentListChange
+    global Person2Change
+
+    # 个人资料里的评论数(主动)减1
+    Person2Change = Personel.objects.get(personid=personid1)
+    Person2Change.commentnum = Person2Change.commentnum -1
+    Person2Change.save()
+
+    CommentListChange = CommentList.objects.get(personid1=personid1,diaryid=diaryid,commenttime=commenttime)
+    CommentListChange.delete()
+
+    return JsonResponse({'ret': 0, 'msg': '删除评论成功'})

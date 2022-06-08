@@ -13,6 +13,7 @@ class Public_Diary_Test(TestCase):
         self.DiaryLike_url='http://127.0.0.1:8000/DiaryLike/'
         self.CancelDiaryLike_url='http://127.0.0.1:8000/CancelDiaryLike/'
         self.DiaryComment_url='http://127.0.0.1:8000/DiaryComment/'
+        self.DeleteDiaryComment_url='http://127.0.0.1:8000/DeleteDiaryComment/'
 
     # # 关注用户单元测试
     # def test_PersonFollow(self):
@@ -57,12 +58,23 @@ class Public_Diary_Test(TestCase):
 
 
     #评论日记单元测试
-    def test_DiaryComment(self):
+    # def test_DiaryComment(self):
+    #     headers = {"content-type": "application/json"}
+    #
+    #     # 成功案例
+    #     json_data1 = {'diaryid':'11','personid1': '111', 'personid2': '11','commenttime':'2022-2-22 15:30','commentcontent':'hello!'}
+    #     r1 = requests.post(self.DiaryComment_url, json=json_data1, headers=headers)
+    #     result1 = r1.json()
+    #     self.assertEqual(result1['ret'], 0)
+
+
+    #删除日记单元测试
+    def test_DeleteDiaryComment(self):
         headers = {"content-type": "application/json"}
 
         # 成功案例
-        json_data1 = {'diaryid':'11','personid1': '111', 'personid2': '11','commenttime':'2022-2-22 15:30','commentcontent':'hello!'}
-        r1 = requests.post(self.DiaryComment_url, json=json_data1, headers=headers)
+        json_data1 = {'diaryid':'11','personid1': '111','commenttime':'2011-1-1 11:11'}
+        r1 = requests.post(self.DeleteDiaryComment_url, json=json_data1, headers=headers)
         result1 = r1.json()
         self.assertEqual(result1['ret'], 0)
 
