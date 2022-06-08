@@ -93,3 +93,23 @@ def CancelDiaryLike(request):
     LikeListChange.delete()
 
     return JsonResponse({'ret': 0, 'msg': '取消点赞成功'})
+
+#评论日记
+def DiaryComment(request):
+
+    request.params = json.loads(request.body)
+    personid1 = request.params['personid1']
+    personid2= request.params['personid2']
+    diaryid = request.params['diaryid']
+    commenttime=request.params['commenttime']
+    commentcontent=request.params['commentcontent']
+
+    CommentList.objects.create(personid1=personid1,personid2=personid2,diaryid=diaryid, commenttime=commenttime,commentcontent=commentcontent)
+    global Person2Change
+
+    #个人资料里的评论数(主动)加1
+    Person2Change = Personel.objects.get(personid=personid1)
+    Person2Change.commentnum = Person2Change.commentnum + 1
+    Person2Change.save()
+
+    return JsonResponse({'ret': 0, 'msg': '评论成功'})

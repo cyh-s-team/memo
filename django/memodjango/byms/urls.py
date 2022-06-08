@@ -18,7 +18,7 @@ from django.urls import path,include
 from User.views import UserLogin,UserRegister,UserChange,GetUser
 from diary.views import NewDiary, DiaryLock,LockCancel,DeleteDiary,GetDiary,DiaryRemind,DeleteDiaryRemind,DiarySearch
 from personel.views import NewPersonel,GetPersonel,GetPersonelLike,GetPersonelComment,ChangePersonel
-from public_diary.views import PersonFollow,DeletePersonFollow,DiaryLike,CancelDiaryLike
+from public_diary.views import PersonFollow,DeletePersonFollow,DiaryLike,CancelDiaryLike,DiaryComment
 
 
 
@@ -46,7 +46,8 @@ urlpatterns = [
     path('PersonFollow/',PersonFollow),
     path('DeletePersonFollow/',DeletePersonFollow),
     path('DiaryLike/',DiaryLike),
-    path('CancelDiaryLike/',CancelDiaryLike)
+    path('CancelDiaryLike/',CancelDiaryLike),
+    path('DiaryComment/',DiaryComment)
 
 
 
