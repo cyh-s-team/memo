@@ -6,7 +6,7 @@ from django.shortcuts import render
 # Create your views here.
 
 
-from common.models import Diary, DiaryLockData, DiaryRemindData
+from common.models import Diary, DiaryLockData, DiaryRemindData,LikeList
 
 
 # 新增日记
@@ -140,4 +140,5 @@ def DiarySearch(request):
     data = list(Diary.objects.values("diaryid").filter(content__contains=content))
     return JsonResponse({'ret': 0,
                          'data':data})
+
 

@@ -54,3 +54,21 @@ def DeletePersonFollow(request):
 
     return JsonResponse({'ret': 0, 'msg': '取消关注成功'})
 
+#点赞日记
+def DiaryLike(request):
+
+    request.params = json.loads(request.body)
+    personid1 = request.params['personid1']
+    personid2= request.params['personid2']
+    diaryid = request.params['diaryid']
+    liketime=request.params['liketime']
+
+    LikeList.objects.create(personid1=personid1,personid2=personid2,diaryid=diaryid,liketime=liketime )
+    global Person2Change
+
+    #个人资料里的点赞数(主动)加1
+    Person2Change = Personel.objects.get(personid=personid1)
+    Person2Change.likenum = Person2Change.likenum + 1
+    Person2Change.save()
+
+    return JsonResponse({'ret': 0, 'msg': '点赞成功'})
