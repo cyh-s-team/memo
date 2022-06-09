@@ -1,0 +1,105 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/back"></include>
+
+    <com.example.myapplication.PepareClass.AdaptScrollView
+        android:id="@+id/absclv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rl_title" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <com.example.myapplication.PepareClass.AdaptView
+                android:id="@+id/lv_notes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:horizontalSpacing="10dp"
+                android:numColumns="2"
+                android:verticalSpacing="10dp" >
+            </com.example.myapplication.PepareClass.AdaptView>
+        </LinearLayout>
+    </com.example.myapplication.PepareClass.AdaptScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="334dp"
+        android:layout_height="45dp"
+
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginRight="185dp"
+        android:background="@drawable/navigationbar_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/navigationbar_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="8"
+                android:background="@drawable/title_bg"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/title_edittext_search" />
+
+                <EditText
+                    android:id="@+id/et_keyword"
+                    android:layout_width="340dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="请输入搜索关键字"
+                    android:imeOptions="actionSearch"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:singleLine="true"
+                    android:textColorHint="#000000"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="40dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginLeft="5dp"
+                    android:background="#DBDBDB"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:onClick="onSearch">
+
+                    <TextView
+                        android:id="@+id/title_right_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="搜索"
+                        android:textColor="@android:color/background_dark"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

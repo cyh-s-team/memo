@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.myapplication">
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!--允许联网 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--获取GSM（2g）、WCDMA（联通3g）等网络状态的信息  -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--获取wifi网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!--获取sd卡写的权限，用于文件上传和下载-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--允许读取手机状态 用于创建BmobInstallation-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication">
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".Memo_share"></activity>
+        <activity android:name=".Memo_Content"></activity>
+        <activity android:name=".MeEdit"></activity>
+        <activity android:name=".Personel"></activity>
+        <activity android:name=".NewFansActivity"></activity>
+        <activity android:name=".NewFollowActivity"></activity>
+
+        <activity android:name=".Findpsw"></activity>
+        <activity android:name=".Maindesign"></activity>
+        <activity android:name=".LIkeActivity"></activity>
+
+
+        <activity android:name=".Addnote"
+                  android:exported="true"
+                  />
+
+        <activity android:name=".DateSearch"></activity>
+        <activity android:name=".Search"></activity>
+
+        <receiver
+            android:name="com.example.myapplication.PepareClass.Alarm"
+            android:process=":remote"/>
+
+        <activity
+            android:name="com.example.myapplication.PepareClass.AlarmAlert"
+            android:label="提醒">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="cn.bmob.v3.util.BmobContentProvider"
+            android:authorities="com.example.myapplication.BmobContentProvider"/>
+
+
+    </application>
+
+</manifest>
