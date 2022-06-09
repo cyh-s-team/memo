@@ -24,6 +24,7 @@ public class AdaptScrollView extends android.widget.ScrollView { //继承自Scro
     @Override
     //布局的映射
     protected void onFinishInflate() {
+        super.onFinishInflate();
         if (getChildCount() > 0) {
             inner = getChildAt(0);
 

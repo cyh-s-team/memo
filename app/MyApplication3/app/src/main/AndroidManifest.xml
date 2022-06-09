@@ -49,15 +49,15 @@
         <activity android:name=".Personel"></activity>
         <activity android:name=".NewFansActivity"></activity>
         <activity android:name=".NewFollowActivity"></activity>
-
+        <activity android:name=".GoodsdetailActivity"></activity>
         <activity android:name=".Findpsw"></activity>
         <activity android:name=".Maindesign"></activity>
         <activity android:name=".LIkeActivity"></activity>
 
 
         <activity android:name=".Addnote"
-                  android:exported="true"
-                  />
+            android:exported="true"
+            />
 
         <activity android:name=".DateSearch"></activity>
         <activity android:name=".Search"></activity>
@@ -74,7 +74,9 @@
             </intent-filter>
         </activity>
 
-
+        <provider
+            android:name="cn.bmob.v3.util.BmobContentProvider"
+            android:authorities="com.example.myapplication.BmobContentProvider"/>
 
 
     </application>

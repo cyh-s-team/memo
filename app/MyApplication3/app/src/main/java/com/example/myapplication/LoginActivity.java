@@ -99,13 +99,6 @@ public class LoginActivity extends AppCompatActivity{
                 }catch (IOException e) {
                 }
 
-
-
-
-
-
-
-
                     // TextUtils.isEmpty
                 if(TextUtils.isEmpty(userName)){
                     Toast.makeText(LoginActivity.this, "请输入用户名", Toast.LENGTH_SHORT).show();

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.example.myapplication.PepareClass.SQLBean;
 import com.example.myapplication.PepareClass.NoteAdapter;
 import com.example.myapplication.PepareClass.DatabaseOperation;
 import com.example.myapplication.PepareClass.AdaptView;

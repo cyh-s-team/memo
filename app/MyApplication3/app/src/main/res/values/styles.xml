@@ -16,7 +16,10 @@
     </style>
 
     <style name="AppTheme" parent="AppBaseTheme">
-
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="TitleBarBackground">
@@ -35,4 +38,6 @@
     <style name="NoteActionBarStyle" parent="@android:style/Theme.NoTitleBar.Fullscreen">
     </style>
 
+
+    <style name="TransParentTheme." parent="AppTheme"></style>
 </resources>

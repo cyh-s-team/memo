@@ -57,7 +57,9 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 import com.example.myapplication.PepareClass.CloudSQLBean;
 
@@ -92,6 +94,7 @@ public class Addnote extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        Bmob.initialize(this, "b69a3918b4468f7d26a7f678c3262d69");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addnote);
         //设置此界面为竖屏
@@ -123,7 +126,7 @@ public class Addnote extends AppCompatActivity{
             public void onClick(View v) {
                 context = et_Notes.getText().toString();
                 if (context.isEmpty()) {
-                    Toast.makeText(Addnote.this, "备忘录为空!", Toast.LENGTH_LONG)
+                    Toast.makeText(Addnote.this, "备忘录为空!!!!!", Toast.LENGTH_LONG)
                             .show();
                 } else {
                     //本地数据库保存
@@ -149,7 +152,24 @@ public class Addnote extends AppCompatActivity{
                                 locktype, lock, item_Id);
                     }
                     dop.close_db();
-                   
+                    //云端数据库保存
+                    CloudSQLBean cdop =new CloudSQLBean();
+                    cdop.setTitle(title);
+                    cdop.setContext(context);
+                    cdop.setTime(time);
+                    cdop.setDatatype(datatype);
+                    cdop.setDatatime(datatime);
+                    cdop.setLocktype(locktype);
+                    cdop.setLock(lock);
+                    cdop.save(new SaveListener<String>() {
+                        @Override
+                        public void done(String objectId,BmobException e) {
+                            if(e==null){
+
+                            }else{
+                            }
+                        }
+                    });
 
 
                     Addnote.this.finish();
