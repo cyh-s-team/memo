@@ -25,7 +25,7 @@ class UserTest(TestCase):
     #     q = requests.get(self.UserLogin_url + '?username=' + "cyh" + '&passwd=' + "123456")
     #     result2 = q.json()
     #     self.assertEqual(result2['ret'], 1)
-    #
+
 
     # # 用户注册单元测试
     # def test_UserRegister(self):

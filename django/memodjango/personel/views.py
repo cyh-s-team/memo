@@ -69,6 +69,7 @@ def GetPersonel(request):
 def GetPersonelLike(request):
     personid2= request.GET.get('personid2')
     data = list(LikeList.objects.values().filter(personid2__contains=personid2))
+    #终端查看数据
     print(data)
     return JsonResponse({'ret': 0,
                          'data':data})

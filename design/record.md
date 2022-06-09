@@ -6,7 +6,7 @@
 
 
 # API接口设计
-设计文档链接：https://www.apifox.cn/apidoc/shared-f5740a17-617c-4775-a2aa-367df1330e98
+设计文档链接：https://www.apifox.cn/apidoc/shared-bd557f21-16d7-49ca-b0ba-9237b20a0374/api-15626817
 
 # 功能思维导图
 
